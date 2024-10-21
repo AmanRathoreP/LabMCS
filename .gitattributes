@@ -1,0 +1,182 @@
+# This file is inspired by https://github.com/alexkaratarakis/gitattributes and https://github.com/jhipster/jhipster-online/blob/main/.gitattributes
+
+# Sources
+*.c     text diff=cpp
+*.cc    text diff=cpp
+*.cxx   text diff=cpp
+*.cpp   text diff=cpp
+*.cpi   text diff=cpp
+*.c++   text diff=cpp
+*.hpp   text diff=cpp
+*.h     text diff=cpp
+*.h++   text diff=cpp
+*.hh    text diff=cpp
+
+# Compiled Object files
+*.slo   binary
+*.lo    binary
+*.o     binary
+*.obj   binary
+
+# Precompiled Headers
+*.gch   binary
+*.pch   binary
+
+# Compiled Dynamic libraries
+*.so    binary
+*.dylib binary
+*.dll   binary
+
+# Compiled Static libraries
+*.lai   binary
+*.la    binary
+*.a     binary
+*.lib   binary
+
+# Executables
+*.exe   binary
+*.out   binary
+*.app   binary
+
+# Basic .gitattributes for a Mathematica repo.
+# Source files
+# Caution: *.m also matches Matlab files.
+# ============
+*.nb             text diff=mathematica
+*.wls            text diff=mathematica
+*.wl             text diff=mathematica
+*.m              text diff=mathematica
+
+# Test files
+# ==========
+*.wlt            text diff=mathematica
+*.mt             text diff=mathematica
+
+# Binary files
+# ============
+*.mx             binary
+
+# Apply override to all files in the directory
+*.md linguist-detectable
+
+# These files are text and should be normalized (Convert crlf => lf)
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+*.ps1           text eol=crlf
+*.coffee        text
+*.css           text
+*.cql           text
+*.df            text
+*.ejs           text
+*.html          text
+*.java          text
+*.js            text
+*.json          text
+*.less          text
+*.properties    text
+*.sass          text
+*.scss          text
+*.sh            text eol=lf
+*.sql           text
+*.txt           text
+*.ts            text
+*.xml           text
+*.yaml          text
+*.yml           text
+
+# Documents
+*.doc           diff=astextplain
+*.DOC           diff=astextplain
+*.docx          diff=astextplain
+*.DOCX          diff=astextplain
+*.dot           diff=astextplain
+*.DOT           diff=astextplain
+*.pdf           diff=astextplain
+*.PDF           diff=astextplain
+*.rtf           diff=astextplain
+*.RTF           diff=astextplain
+*.markdown      text
+*.md            text
+*.adoc          text
+*.textile       text
+*.mustache      text
+*.csv           text
+*.tab           text
+*.tsv           text
+*.txt           text
+AUTHORS         text
+CHANGELOG       text
+CHANGES         text
+CONTRIBUTING    text
+COPYING         text
+copyright       text
+*COPYRIGHT*     text
+INSTALL         text
+license         text
+LICENSE         text
+NEWS            text
+readme          text
+*README*        text
+TODO            text
+
+# Graphics
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.gif           binary
+*.tif           binary
+*.tiff          binary
+*.ico           binary
+*.svg           binary
+*.eps           binary
+
+## CONFIGS
+*.conf          text
+*.config        text
+.editorconfig   text
+.gitattributes  text
+.gitconfig      text
+.gitignore      text
+.htaccess       text
+*.npmignore     text
+
+## AUDIO
+*.kar           binary
+*.m4a           binary
+*.mid           binary
+*.midi          binary
+*.mp3           binary
+*.ogg           binary
+*.ra            binary
+
+## VIDEO
+*.3gpp          binary
+*.3gp           binary
+*.as            binary
+*.asf           binary
+*.asx           binary
+*.fla           binary
+*.flv           binary
+*.m4v           binary
+*.mng           binary
+*.mov           binary
+*.mp4           binary
+*.mpeg          binary
+*.mpg           binary
+*.swc           binary
+*.swf           binary
+*.webm          binary
+
+## ARCHIVES
+*.7z            binary
+*.gz            binary
+*.rar           binary
+*.tar           binary
+*.zip           binary
+
+## FONTS
+*.ttf           binary
+*.eot           binary
+*.otf           binary
+*.woff          binary
+*.woff2         binary

@@ -12,3 +12,7 @@
 	# git submodule add --force --name implot https://github.com/epezent/implot vendor/implot
 	path = vendor/implot
 	url = https://github.com/epezent/implot
+[submodule "imnodes"]
+	# git submodule add --force --name imnodes https://github.com/Nelarius/imnodes vendor/imnodes
+	path = vendor/imnodes
+	url = https://github.com/Nelarius/imnodes

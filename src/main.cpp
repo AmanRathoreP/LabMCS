@@ -6,9 +6,15 @@
 #include <SDL.h>
 #include <SDL_vulkan.h>
 #include <SDL_image.h>
+#include <implot.h>
+#include <imnodes.h>
+#include <implot.h>
+
 #include "ui/windows/about.hpp"
 #include "ui/windows/author.hpp"
 #include "ui/windows/usage.hpp"
+#include "ui/windows/timings_n_editor.hpp"
+#include "ui/windows/timing_diagrams.hpp"
 
 // Volk headers
 #ifdef IMGUI_IMPL_VULKAN_USE_VOLK
@@ -420,6 +426,8 @@ int main(int, char **)
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
+    ImPlot::CreateContext();
+    ImNodes::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
     (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
@@ -524,9 +532,11 @@ int main(int, char **)
             {
                 if (ImGui::MenuItem("Timing Graphs"))
                 {
+                    panels::timing::diagrams::show_window = true;
                 }
-                if (ImGui::MenuItem("Timing editor"))
+                if (ImGui::MenuItem("Timing Editor(Nodes)"))
                 {
+                    panels::timing::n_editor::show_window = true;
                 }
                 if (ImGui::MenuItem("Connection Info"))
                 {
@@ -557,6 +567,8 @@ int main(int, char **)
         help::about::loop();
         help::usage::loop();
         help::author::loop();
+        panels::timing::n_editor::loop();
+        panels::timing::diagrams::loop();
 
         // Rendering
         ImGui::Render();
@@ -586,6 +598,8 @@ int main(int, char **)
     check_vk_result(err);
     ImGui_ImplVulkan_Shutdown();
     ImGui_ImplSDL2_Shutdown();
+    ImNodes::DestroyContext();
+    ImPlot::DestroyContext();
     ImGui::DestroyContext();
 
     CleanupVulkanWindow();

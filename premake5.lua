@@ -15,6 +15,10 @@ common_files = {
     "$(SolutionDir)/vendor/implot/implot.cpp",
     "$(SolutionDir)/vendor/implot/implot_items.cpp",
     "$(SolutionDir)/vendor/implot/implot_demo.cpp",
+    --imnodes stuff
+    "$(SolutionDir)/vendor/imnodes/imnodes.h",
+    "$(SolutionDir)/vendor/imnodes/imnodes_internal.h",
+    "$(SolutionDir)/vendor/imnodes/imnodes.cpp",
     --comman files used by solution
     "src/ui/windows/about.hpp",
     "src/ui/windows/about.cpp",
@@ -22,6 +26,10 @@ common_files = {
     "src/ui/windows/author.cpp",
     "src/ui/windows/usage.hpp",
     "src/ui/windows/usage.cpp",
+    "src/ui/windows/timing_diagrams.cpp",
+    "src/ui/windows/timing_diagrams.hpp",
+    "src/ui/windows/timings_n_editor.cpp",
+    "src/ui/windows/timings_n_editor.hpp",
 }
 
 -- Function to concatenate two tables
@@ -41,6 +49,7 @@ function apply_common_filters(project_name)
             "vendor/SDL2Image/include",
             "vendor/imgui",
             "vendor/implot",
+            "vendor/imnodes",
             "$(VULKAN_SDK)/Include",
             "$(VULKAN_SDK)/Include/SDL2"
         }

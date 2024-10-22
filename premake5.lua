@@ -18,6 +18,10 @@ common_files = {
     --comman files used by solution
     "src/ui/windows/about.hpp",
     "src/ui/windows/about.cpp",
+    "src/ui/windows/author.hpp",
+    "src/ui/windows/author.cpp",
+    "src/ui/windows/usage.hpp",
+    "src/ui/windows/usage.cpp",
 }
 
 -- Function to concatenate two tables

@@ -73,7 +73,7 @@ Will be available soon.
    - Email -> *aman.proj.rel@gmail.com*
 
 # Facts
-* ...
+* This app is initially created to manage some laboratory equipments at Dr. Aviru Kumar Basu's lab, INST Mohali. 
 
 # Credits
 * For packages

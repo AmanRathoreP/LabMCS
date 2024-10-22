@@ -7,6 +7,8 @@
 #include <SDL_vulkan.h>
 #include <SDL_image.h>
 #include "ui/windows/about.hpp"
+#include "ui/windows/author.hpp"
+#include "ui/windows/usage.hpp"
 
 // Volk headers
 #ifdef IMGUI_IMPL_VULKAN_USE_VOLK
@@ -535,6 +537,7 @@ int main(int, char **)
             {
                 if (ImGui::MenuItem("Usage"))
                 {
+                    help::usage::show_window = true;
                 }
                 ImGui::Separator();
                 if (ImGui::MenuItem("About"))
@@ -543,6 +546,7 @@ int main(int, char **)
                 }
                 if (ImGui::MenuItem("Author"))
                 {
+                    help::author::show_window = true;
                 }
                 ImGui::EndMenu();
             }
@@ -551,6 +555,8 @@ int main(int, char **)
 
         //* all the setup code for application goes here
         help::about::loop();
+        help::usage::loop();
+        help::author::loop();
 
         // Rendering
         ImGui::Render();

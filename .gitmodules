@@ -16,3 +16,6 @@
 	# git submodule add --force --name imnodes https://github.com/Nelarius/imnodes vendor/imnodes
 	path = vendor/imnodes
 	url = https://github.com/Nelarius/imnodes
+[submodule "rapidjson"]
+	path = vendor/rapidjson
+	url = https://github.com/Tencent/rapidjson.git

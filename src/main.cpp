@@ -15,6 +15,7 @@
 #include "ui/windows/usage.hpp"
 #include "ui/windows/timings_n_editor.hpp"
 #include "ui/windows/timing_diagrams.hpp"
+#include "ui/windows/settings.hpp"
 
 // Volk headers
 #ifdef IMGUI_IMPL_VULKAN_USE_VOLK
@@ -380,6 +381,8 @@ static void FramePresent(ImGui_ImplVulkanH_Window *wd)
 // Main code
 int main(int, char **)
 {
+    // initialising some in-house stuff
+    settings::app::setup();
     // Setup SDL
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
     {
@@ -480,7 +483,7 @@ int main(int, char **)
     // io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\segoeui.ttf", 18.0f);
     // io.Fonts->AddFontFromFileTTF("res/fonts/DroidSans.ttf", 16.0f);
     // io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f);
-    io.Fonts->AddFontFromFileTTF("res/fonts/Rubik/static/Rubik-SemiBold.ttf", 15.0f);
+    io.Fonts->AddFontFromFileTTF("res/fonts/Rubik/static/Rubik-SemiBold.ttf", settings::app::font_weight);
     // ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, nullptr, io.Fonts->GetGlyphRangesJapanese());
     // IM_ASSERT(font != nullptr);
 
@@ -543,6 +546,23 @@ int main(int, char **)
                 }
                 ImGui::EndMenu();
             }
+            if (ImGui::BeginMenu("Config"))
+            {
+                if (ImGui::MenuItem("Settings"))
+                {
+                    settings::app::show_window = true;
+                }
+                ImGui::Separator();
+                if (ImGui::MenuItem("IO Setup"))
+                {
+                    settings::io::show_window = true;
+                }
+                if (ImGui::MenuItem("Communication"))
+                {
+                    settings::communication::show_window = true;
+                }
+                ImGui::EndMenu();
+            }
             if (ImGui::BeginMenu("Help"))
             {
                 if (ImGui::MenuItem("Usage"))
@@ -569,6 +589,9 @@ int main(int, char **)
         help::author::loop();
         panels::timing::n_editor::loop();
         panels::timing::diagrams::loop();
+        settings::app::loop();
+        settings::io::loop();
+        settings::communication::loop();
 
         // Rendering
         ImGui::Render();

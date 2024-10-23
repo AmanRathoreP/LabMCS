@@ -1,4 +1,4 @@
-#include "timings_n_editor.hpp"
+#include "panels.hpp"
 
 bool panels::timing::n_editor::show_window = false;
 

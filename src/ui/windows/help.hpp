@@ -10,4 +10,16 @@ namespace help
 		extern bool show_window;
 		void loop(void);
 	}
+
+	namespace author
+	{
+		extern bool show_window;
+		void loop(void);
+	}
+
+	namespace usage
+	{
+		extern bool show_window;
+		void loop(void);
+	}
 }

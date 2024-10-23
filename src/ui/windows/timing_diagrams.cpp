@@ -1,4 +1,4 @@
-#include "timing_diagrams.hpp"
+#include "panels.hpp"
 
 bool panels::timing::diagrams::show_window = false;
 

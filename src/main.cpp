@@ -10,11 +10,8 @@
 #include <imnodes.h>
 #include <implot.h>
 
-#include "ui/windows/about.hpp"
-#include "ui/windows/author.hpp"
-#include "ui/windows/usage.hpp"
-#include "ui/windows/timings_n_editor.hpp"
-#include "ui/windows/timing_diagrams.hpp"
+#include "ui/windows/help.hpp"
+#include "ui/windows/panels.hpp"
 #include "ui/windows/settings.hpp"
 
 // Volk headers

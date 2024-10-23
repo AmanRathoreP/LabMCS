@@ -1,4 +1,4 @@
-#include "author.hpp"
+#include "help.hpp"
 
 bool help::author::show_window = false;
 

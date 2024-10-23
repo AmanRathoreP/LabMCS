@@ -1,4 +1,4 @@
-#include "usage.hpp"
+#include "help.hpp"
 
 bool help::usage::show_window = false;
 

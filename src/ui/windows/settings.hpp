@@ -10,6 +10,7 @@
 #include <rapidjson/stringbuffer.h>
 
 #define APP_SETTINGS_FILE_NAME_AND_PATH "app_settings.json"
+#define IO_INFO_FILE_NAME_AND_PATH "io_info.json"
 
 namespace settings
 {
@@ -53,6 +54,8 @@ namespace settings
         extern std::vector<io_component> input_components;
         extern std::vector<io_component> output_components;
 
+        void setup(void);
         void loop(void);
+        void save_io_info(void);
     }
 }

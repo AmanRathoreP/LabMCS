@@ -380,6 +380,7 @@ int main(int, char **)
 {
     // initialising some in-house stuff
     settings::app::setup();
+    settings::io::setup();
     // Setup SDL
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
     {

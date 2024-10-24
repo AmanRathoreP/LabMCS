@@ -23,8 +23,8 @@ void settings::io::loop(void)
                 if (ImGui::Button("Add Input"))
                 {
                     settings::io::io_component new_component;
-                    strcpy(new_component.name, "");
-                    strcpy(new_component.id, "");
+                    strcpy_s(new_component.name, "");
+                    strcpy_s(new_component.id, "");
                     new_component.value_type = settings::io::value_types::INT;
                     new_component.color = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
                     settings::io::input_components.push_back(new_component);
@@ -52,8 +52,8 @@ void settings::io::loop(void)
                 if (ImGui::Button("Add Output"))
                 {
                     settings::io::io_component new_component;
-                    strcpy(new_component.name, "");
-                    strcpy(new_component.id, "");
+                    strcpy_s(new_component.name, "");
+                    strcpy_s(new_component.id, "");
                     new_component.value_type = settings::io::value_types::INT;
                     new_component.color = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
                     settings::io::output_components.push_back(new_component);
@@ -164,10 +164,10 @@ void settings::io::setup()
 
                     // Read component data
                     if (obj.HasMember("name") && obj["name"].IsString())
-                        strcpy(new_component.name, obj["name"].GetString());
+                        strcpy_s(new_component.name, obj["name"].GetString());
 
                     if (obj.HasMember("id") && obj["id"].IsString())
-                        strcpy(new_component.id, obj["id"].GetString());
+                        strcpy_s(new_component.id, obj["id"].GetString());
 
                     if (obj.HasMember("value_type") && obj["value_type"].IsInt())
                         new_component.value_type = (settings::io::value_types)obj["value_type"].GetInt();
@@ -198,10 +198,10 @@ void settings::io::setup()
 
                     // Read component data
                     if (obj.HasMember("name") && obj["name"].IsString())
-                        strcpy(new_component.name, obj["name"].GetString());
+                        strcpy_s(new_component.name, obj["name"].GetString());
 
                     if (obj.HasMember("id") && obj["id"].IsString())
-                        strcpy(new_component.id, obj["id"].GetString());
+                        strcpy_s(new_component.id, obj["id"].GetString());
 
                     if (obj.HasMember("value_type") && obj["value_type"].IsInt())
                         new_component.value_type = (settings::io::value_types)obj["value_type"].GetInt();

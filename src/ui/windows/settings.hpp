@@ -3,6 +3,8 @@
 #include <iostream>
 #include <imgui.h>
 #include <fstream>
+#include <vector>
+#include <string>
 #include <rapidjson/document.h>
 #include <rapidjson/writer.h>
 #include <rapidjson/stringbuffer.h>
@@ -30,6 +32,27 @@ namespace settings
     namespace io
     {
         extern bool show_window;
+
+        enum value_types
+        {
+            BOOL,
+            INT,
+            FLOAT
+        };
+
+        static const char *value_type_names[] = {"BOOL", "INT", "FLOAT"};
+
+        struct io_component
+        {
+            char name[32];
+            char id[32];
+            value_types value_type;
+            ImVec4 color;
+        };
+
+        extern std::vector<io_component> input_components;
+        extern std::vector<io_component> output_components;
+
         void loop(void);
     }
 }

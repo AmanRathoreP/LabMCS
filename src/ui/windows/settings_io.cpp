@@ -5,15 +5,26 @@ bool settings::io::show_window = false;
 std::vector<settings::io::io_component> settings::io::input_components;
 std::vector<settings::io::io_component> settings::io::output_components;
 
+bool settings::io::show_error_dialog = false;
+std::string settings::io::error_message;
+
 void settings::io::loop(void)
 {
     if (settings::io::show_window)
     {
         ImGui::Begin("Input/Output Settings", &settings::io::show_window);
 
+        // Check for validation issues
+        std::string validation_issues = check_for_dirty_components(settings::io::input_components) + check_for_dirty_components(settings::io::output_components);
+
         // Save IO info button
         if (ImGui::Button("Save IO info"))
-            settings::io::save_io_info();
+        {
+            if (!validation_issues.empty())
+                set_error(validation_issues);
+            if (!settings::io::show_error_dialog)
+                settings::io::save_io_info();
+        }
 
         if (ImGui::BeginTabBar("MyTabBar"))
         {
@@ -75,6 +86,26 @@ void settings::io::loop(void)
             }
 
             ImGui::EndTabBar();
+        }
+
+        // Displaying error dialog if needed
+        if (settings::io::show_error_dialog)
+        {
+            ImGui::OpenPopup("Error Dialog");
+        }
+
+        if (ImGui::BeginPopupModal("Error Dialog", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            ImGui::Text("Errors Found:");
+            ImGui::TextWrapped("%s", settings::io::error_message.c_str());
+
+            if (ImGui::Button("OK"))
+            {
+                ImGui::CloseCurrentPopup();
+                settings::io::show_error_dialog = false; // Reset the dialog visibility
+            }
+
+            ImGui::EndPopup();
         }
 
         ImGui::End();
@@ -222,4 +253,49 @@ void settings::io::setup()
             }
         }
     }
+}
+
+// Check for issues in the given vector of io_components
+std::string settings::io::check_for_dirty_components(std::vector<settings::io::io_component> components)
+{
+    // todo update error message to show more information
+
+    std::set<std::string> unique_ids;
+    std::string issues = "";
+
+    for (const auto &component : components)
+    {
+        // Check if name or id is empty
+        if (strlen(component.name) == 0)
+        {
+            issues += "Component with ID '" + std::string(component.id) + "' has an empty name.\n";
+        }
+
+        if (strlen(component.id) == 0)
+        {
+            issues += "Component with name '" + std::string(component.name) + "' has an empty ID.\n";
+        }
+
+        // Check for duplicate IDs
+        if (strlen(component.id) > 0)
+        {
+            if (unique_ids.find(component.id) != unique_ids.end())
+            {
+                issues += "Duplicate ID found: '" + std::string(component.id) + "'\n";
+            }
+            else
+            {
+                unique_ids.insert(component.id);
+            }
+        }
+    }
+
+    return issues;
+}
+
+// Function to set error message and show the error dialog
+inline void settings::io::set_error(const std::string &message)
+{
+    settings::io::error_message = message;
+    settings::io::show_error_dialog = true;
 }

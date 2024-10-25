@@ -97,13 +97,17 @@ void settings::io::loop(void)
         // Displaying error dialog if needed
         if (settings::io::show_error_dialog)
         {
-            ImGui::OpenPopup("Error Dialog");
+            ImGui::OpenPopup("Errors info");
         }
 
-        if (ImGui::BeginPopupModal("Error Dialog", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        ImGui::SetNextWindowSize(ImVec2(650, 300), ImGuiCond_Always);
+        
+        if (ImGui::BeginPopupModal("Errors info", NULL, ImGuiWindowFlags_NoResize))
         {
             ImGui::Text("Errors Found:");
             ImGui::TextWrapped("%s", settings::io::error_message.c_str());
+
+            ImGui::Dummy(ImVec2(0.0f, 20.0f)); // Adds vertical padding
 
             if (ImGui::Button("OK"))
             {

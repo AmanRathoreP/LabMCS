@@ -51,6 +51,9 @@ void settings::io::loop(void)
                     ImGui::InputText(("ID##Input" + std::to_string(i)).c_str(), component.id, IM_ARRAYSIZE(component.id));
                     ImGui::Combo(("Value Type##Input" + std::to_string(i)).c_str(), (int *)&component.value_type, settings::io::value_type_names, IM_ARRAYSIZE(settings::io::value_type_names));
                     ImGui::ColorEdit4(("Colour##Input" + std::to_string(i)).c_str(), (float *)&component.color);
+                    // Adding Delete button for each output component
+                    if (ImGui::Button(("Delete##Input" + std::to_string(i)).c_str()))
+                        settings::io::input_components.erase(settings::io::input_components.begin() + i--);
                     ImGui::Separator();
                 }
 
@@ -79,6 +82,9 @@ void settings::io::loop(void)
                     ImGui::InputText(("ID##Output" + std::to_string(i)).c_str(), component.id, IM_ARRAYSIZE(component.id));
                     ImGui::Combo(("Value Type##Output" + std::to_string(i)).c_str(), (int *)&component.value_type, settings::io::value_type_names, IM_ARRAYSIZE(settings::io::value_type_names));
                     ImGui::ColorEdit4(("Colour##Output" + std::to_string(i)).c_str(), (float *)&component.color);
+                    // Adding Delete button for each output component
+                    if (ImGui::Button(("Delete##Output" + std::to_string(i)).c_str()))
+                        settings::io::output_components.erase(settings::io::output_components.begin() + i--);
                     ImGui::Separator();
                 }
 

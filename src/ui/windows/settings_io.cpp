@@ -15,7 +15,7 @@ void settings::io::loop(void)
         ImGui::Begin("Input/Output Settings", &settings::io::show_window);
 
         // Check for validation issues
-        std::string validation_issues = check_for_dirty_components(settings::io::input_components) + check_for_dirty_components(settings::io::output_components);
+        std::string validation_issues = check_for_dirty_components(settings::io::input_components, "inputs") + check_for_dirty_components(settings::io::output_components, "outputs");
 
         // Save IO info button
         if (ImGui::Button("Save IO info"))
@@ -266,24 +266,23 @@ void settings::io::setup()
 }
 
 // Check for issues in the given vector of io_components
-std::string settings::io::check_for_dirty_components(std::vector<settings::io::io_component> components)
+std::string settings::io::check_for_dirty_components(std::vector<settings::io::io_component> components, std::string components_are_of_type)
 {
-    // todo update error message to show more information
-
     std::set<std::string> unique_ids;
     std::string issues = "";
+    int component_no = 1;
 
     for (const auto &component : components)
     {
         // Check if name or id is empty
         if (strlen(component.name) == 0)
         {
-            issues += "Component with ID '" + std::string(component.id) + "' has an empty name.\n";
+            issues += "Component number: " + std::to_string(component_no) + " of " + components_are_of_type + " has an empty name.\n";
         }
 
         if (strlen(component.id) == 0)
         {
-            issues += "Component with name '" + std::string(component.name) + "' has an empty ID.\n";
+            issues += "Component number: " + std::to_string(component_no) + " of " + components_are_of_type + " has an empty ID.\n";
         }
 
         // Check for duplicate IDs
@@ -298,6 +297,7 @@ std::string settings::io::check_for_dirty_components(std::vector<settings::io::i
                 unique_ids.insert(component.id);
             }
         }
+        component_no++;
     }
 
     return issues;

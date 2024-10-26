@@ -61,7 +61,7 @@ namespace settings
         void loop(void);
         void save_io_info(void);
         // returns an empty string if the inputs and outputs data satisfy the creteria, else returns all the issues with the components
-        std::string check_for_dirty_components(std::vector<settings::io::io_component> components);
+        std::string check_for_dirty_components(std::vector<settings::io::io_component> components, std::string components_are_of_type);
         inline void set_error(const std::string& message);
     }
 }
